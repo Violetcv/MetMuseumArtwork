@@ -7,16 +7,19 @@ const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
   const [selectArtworks, setSelectedArtworks] = useState();
   const [page, setPage] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
+
         const response = await axios.get(
           'https://collectionapi.metmuseum.org/public/collection/v1/objects',
           {
             params: {
-              metadataDate: '2023-06-01',
+              metadataDate: "2023-01-01",
               page: page,
               pageSize: 9 // Display 9 cards per page
             },
@@ -24,7 +27,8 @@ const Artworks = () => {
         );
 
         const objectIDs = response.data.objectIDs;
-        const artworkPromises = objectIDs.map(async (objectID) => {
+        const objectIDsSubset = objectIDs.slice((page - 1) * 9, page * 9);
+        const artworkPromises = objectIDsSubset.map(async (objectID) => {
           const artworkResponse = await axios.get(
             `https://collectionapi.metmuseum.org/public/collection/v1/objects/${objectID}`
           );
@@ -33,6 +37,7 @@ const Artworks = () => {
 
         const artworksData = await Promise.all(artworkPromises);
         setArtworks((prevArtworks) => [...prevArtworks, ...artworksData]);
+        setIsLoading(false);
       } catch (error) {
         console.log(error);
       }
@@ -45,7 +50,7 @@ const Artworks = () => {
     const container = containerRef.current;
     if (
       container.scrollTop + container.clientHeight >= container.scrollHeight &&
-      artworks.length > 0
+      !isLoading
     ) {
       setPage((prevPage) => prevPage + 1);
     }
@@ -53,6 +58,10 @@ const Artworks = () => {
 
   const handleClick = (artwork) => {
     setSelectedArtworks(artwork);
+  };
+
+  const handleLoadMore = () => {
+    setPage((prevPage) => prevPage + 1);
   };
 
   return (
@@ -80,6 +89,12 @@ const Artworks = () => {
             </div>
           ))}
         </div>
+        {isLoading && <div>Loading...</div>}
+        {!isLoading && artworks.length === 18 && (
+          <div className="load-more-button" onClick={handleLoadMore}>
+            Load More
+          </div>
+        )}
       </div>
       {selectArtworks && (
         <div className="container" style={{ marginTop: '20px' }}>
