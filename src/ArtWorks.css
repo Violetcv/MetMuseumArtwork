@@ -11,6 +11,11 @@
   /* background-color: #333; */
   display: flex;
   flex-wrap: wrap;
+  color: #A74D4A;
+}
+
+.col-3{
+  color:#A74D4A;
 }
 
 .col-4 {
@@ -20,15 +25,16 @@
 
 .load-more-button {
   cursor: pointer;
-  background-color: #f2f2f2;
+  background-color: #F5F5F5;
   padding: 10px;
   text-align: center;
   margin-top: 10px;
   border-radius: 4px;
+  color: #A74D4A;
 }
 
 .load-more-button:hover {
-  background-color: #e0e0e0;
+  background-color: #EAE6E1;
 }
 
 /* Add any additional styling as needed */

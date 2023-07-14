@@ -67,13 +67,13 @@ const Artworks = () => {
   };
 
   return (
-    <div>
       <div
         className="container"
         ref={containerRef}
         onScroll={handleScroll}
       >
-        <div className="row" >
+        <div className="row">
+        <div className="col-9 row card-deck">
           {artworks.map((artwork) => (
             <div
               className="col-4"
@@ -83,10 +83,23 @@ const Artworks = () => {
               <ArtCard
                 title={artwork.title}
                 primaryImage={artwork.primaryImage}
-                artistDisplayName={artwork.artistDisplayName}
+                // artistDisplayName={artwork.artistDisplayName}
               />
             </div>
           ))}
+        </div>
+        <div className="col-3">
+        {selectArtworks && (
+        <div className="container">
+          <ArtworkInfo
+            artistDisplayName={selectArtworks.artistDisplayName}
+            primaryImage={selectArtworks.primaryImage}
+            objectID={selectArtworks.objectID}
+            title={selectArtworks.title}
+          />
+        </div>
+        )}
+        </div>
         </div>
         {isLoading && <div>Loading...</div>}
         {!isLoading && artworks.length === 18 && (
@@ -95,17 +108,6 @@ const Artworks = () => {
           </div>
         )}
       </div>
-      {selectArtworks && (
-        <div className="container" style={{ marginTop: '20px' }}>
-          <ArtworkInfo
-            artistDisplayName={selectArtworks.artistDisplayName}
-            primaryImage={selectArtworks.primaryImage}
-            objectID={selectArtworks.objectID}
-            title={selectArtworks.title}
-          />
-        </div>
-      )}
-    </div>
   );
 };
 
