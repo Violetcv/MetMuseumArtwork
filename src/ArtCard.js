@@ -5,12 +5,12 @@ function ArtCard({ title, artistDisplayName, primaryImage, objectID}){
           <div className="card">
             <img src={primaryImage} className="card-img-top" alt={`Album art of ${title}`} />
             <div className="card-body d-flex flex-column justify-content-between">
-              <h5 className="card-title">
+              {/* <h5 className="card-title">
                 {title}
               </h5>
               <p className="card-text">
                 {artistDisplayName}
-              </p>
+              </p> */}
             </div>
           </div>
         );
