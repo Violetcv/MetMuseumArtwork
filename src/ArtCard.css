@@ -1,0 +1,24 @@
+.card {
+    height: 12rem;
+    width: 13rem;
+    display: flex;
+    flex-direction: column;
+    background-color: #e4002b;
+    border: 2px solid #ffffff;
+  }
+  
+  .card-img-top {
+    max-height: 13rem;
+  }
+  
+  .card-title {
+    color: #e4002b;
+  }
+  
+  .card-text {
+    color: #e4002b;
+  }
+  
+  /* Add any additional styling as needed */
+  
+  

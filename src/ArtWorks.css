@@ -1,0 +1,35 @@
+.container {
+  /* border: 0.3rem solid #e4002b; */
+  padding: 10px;
+  max-height: 500px;
+  overflow-y: auto;
+
+}
+
+.row {
+  /* border: 0.3rem solid #e4002b; */
+  /* background-color: #333; */
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.col-4 {
+  margin-bottom: 18px;
+  flex: 0 0 33.33%;
+}
+
+.load-more-button {
+  cursor: pointer;
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+  margin-top: 10px;
+  border-radius: 4px;
+}
+
+.load-more-button:hover {
+  background-color: #e0e0e0;
+}
+
+/* Add any additional styling as needed */
+

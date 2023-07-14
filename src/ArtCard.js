@@ -1,22 +1,14 @@
+import './ArtCard.css';
+
 function ArtCard({ title, artistDisplayName, primaryImage, objectID}){
         return (
-          <div
-            className="card"
-            style={{
-              height: "20rem",
-              width: "13rem",
-              display: "flex",
-              flexDirection: "column",
-              backgroundColor: "#ffffff",
-              border: "2px solid #000000"
-            }}
-          >
-            <img src={primaryImage} className="card-img-top" alt={`Album art of ${title}`} style={{ maxHeight: '200px' }} />
+          <div className="card">
+            <img src={primaryImage} className="card-img-top" alt={`Album art of ${title}`} />
             <div className="card-body d-flex flex-column justify-content-between">
-              <h5 className="card-title" style={{ color: "#000000" }}>
+              <h5 className="card-title">
                 {title}
               </h5>
-              <p className="card-text" style={{ color: "#000000" }}>
+              <p className="card-text">
                 {artistDisplayName}
               </p>
             </div>

@@ -2,6 +2,8 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import ArtCard from './ArtCard';
 import ArtworkInfo from './ArtworkInfo';
+import './ArtWorks.css';
+
 
 const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
@@ -19,7 +21,7 @@ const Artworks = () => {
           'https://collectionapi.metmuseum.org/public/collection/v1/objects',
           {
             params: {
-              metadataDate: "2023-01-01",
+              metadataDate: "2023-07-01",
               page: page,
               pageSize: 9 // Display 9 cards per page
             },
@@ -66,18 +68,15 @@ const Artworks = () => {
 
   return (
     <div>
-      <h1>Metropolitan Museum Artworks</h1>
       <div
         className="container"
-        style={{ border: '1px solid black', padding: '10px', maxHeight: '500px', overflowY: 'auto' }}
         ref={containerRef}
         onScroll={handleScroll}
       >
-        <div className="row" style={{ display: 'flex', flexWrap: 'wrap' }}>
+        <div className="row" >
           {artworks.map((artwork) => (
             <div
               className="col-4"
-              style={{ marginBottom: '18px', flex: '0 0 33.33%' }}
               onClick={() => handleClick(artwork)}
               key={artwork.objectID}
             >
