@@ -6,7 +6,7 @@ function ArtCard({ title, artistDisplayName, primaryImageSmall, objectID}){
             <img src={primaryImageSmall} className="card-img-top" alt={`Album art of ${title}`} />
             <div className="card-body d-flex flex-column justify-content-between">
               {/* <h5 className="card-title">
-                {title}
+                {title} . //img scaling
               </h5>
               <p className="card-text">
                 {artistDisplayName}

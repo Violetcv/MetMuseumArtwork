@@ -10,7 +10,7 @@ function ArtworkInfo({objectName, creditLine, title, objectID, objectURL, cultur
             <p className="mb-1" style={{color:"#A74D4A", fontSize: "0.6rem"}}>{creditLine}</p>
             <h5 className="mb-1" style={{color:"#A74D4A"}}>{artistDisplayName}</h5>
             <h9 className="mb-1" style={{color: "#A74D4A", fontSize: "0.8rem"}}>{artistDisplayBio}</h9>
-            <h9 className="mb-1" style={{color: "#A74D4A"}}>{culture}</h9>
+            <p className="mb-1" style={{color: "#A74D4A"}}>{culture}</p>
             <h9 className="mb-1" style={{color: "#A74D4A"}}>{period}</h9>
 
             {/* add other artwork details */}

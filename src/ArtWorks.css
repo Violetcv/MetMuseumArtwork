@@ -1,28 +1,28 @@
-.container {
+/* .container {
   border: 0.3rem solid #818B7E;
   padding: 10px;
   max-height: 500px;
   overflow-y: auto;
-  margin-top: 3rem;
+  margin-top: 3rem; */
   /* background-color: #dbcfc3; */
-}
+/* } */
 
-.row {
+/* .row {
   /* border: 0.3rem solid #e4002b; */
   /* background-color: #333; */
-  display: flex;
+  /* display: flex;
   flex-wrap: wrap;
   color: #A74D4A;
 }
 
-.col-3{
+.col-3 {
   margin-top:auto;
   color:#A74D4A;
 }
+*/
 
-.col-4 {
+.artcard{
   margin-bottom: 18px;
-  flex: 0 0 33.33%;
 }
 
 .load-more-button {

@@ -7,7 +7,7 @@ import './ArtWorks.css';
 const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
   const [selectArtworks, setSelectedArtworks] = useState();
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(1);//default value
   const [isLoading, setIsLoading] = useState(false);
   const containerRef = useRef(null);
 
@@ -20,9 +20,13 @@ const Artworks = () => {
           'https://collectionapi.metmuseum.org/public/collection/v1/objects',
           {
             params: {
+              // q: "sunflower",
+              // title: true,
+              // hasImages: true,
               metadataDate: "2023-05-01",
               page: page,
-              pageSize: 9 // Display 9 cards per page
+              departmentIds: "10",
+              pageSize: 9 //Display 9 cards per page
             },
           }
         );
@@ -36,7 +40,10 @@ const Artworks = () => {
           return artworkResponse.data;
         });
 
+
         const artworksData = await Promise.all(artworkPromises);
+        const artworksWithImages = artworksData.filter(item => [])
+        // set filter on wheteher there are images or not
         setArtworks((prevArtworks) => [...prevArtworks, ...artworksData]);
         setIsLoading(false);
       } catch (error) {
@@ -46,6 +53,10 @@ const Artworks = () => {
 
     fetchData();
   }, [page]);
+
+  // departments api; drop down
+
+
 
   const handleScroll = () => {
     const container = containerRef.current;
@@ -68,13 +79,15 @@ const Artworks = () => {
   return (
     <div>
       
-      <div className="container" ref={containerRef} onScroll={handleScroll}>
+      <div className="container">
+        {/* browse by department dateBegin and dateEnd API:  https://collectionapi.metmuseum.org/public/collection/v1/departments */}
       <p>Browse by: Era Artist</p>
+      {/* (inline) drop down; state object for departments; setSelecttedDepartmentObject */}
         <div className="row">
-          <div className="col-9 row card-deck">
+          <div className="col-9 row card-deck" ref={containerRef} onScroll={handleScroll} style={{height: "100vh", overflowX: "scroll", "overflowY": "scroll" }}>
             {artworks.map((artwork) => (
               <div
-                className="col-4"
+                className="col-4 artcard"
                 onClick={() => handleClick(artwork)}
                 key={artwork.objectID}
               >
