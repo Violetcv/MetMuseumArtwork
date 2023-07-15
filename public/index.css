@@ -18,12 +18,16 @@ body {
     background-color: #ffffff;
     padding: 10px;
     display: flex;
-    align-items: center; 
+    align-items: center;
+    background-image: url('/Photos/AV_landscape copy.png');
+    background-size: cover;
+    background-position: center;
+    height: 400px; /* Set the height of the header */
   }
 
   header nav ul li a {
-    color: #e4002b;
-    font-size: 1.5rem;
+    color: #D9CEC7;
+    font-size: 2rem;
   }
 
   .logo {
@@ -39,7 +43,7 @@ body {
   }
   
   nav ul li {
-    display: inline;
+    /* display: inline; */
     margin-right: 10px;
   }
   

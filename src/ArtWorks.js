@@ -4,7 +4,6 @@ import ArtCard from './ArtCard';
 import ArtworkInfo from './ArtworkInfo';
 import './ArtWorks.css';
 
-
 const Artworks = () => {
   const [artworks, setArtworks] = useState([]);
   const [selectArtworks, setSelectedArtworks] = useState();
@@ -21,7 +20,7 @@ const Artworks = () => {
           'https://collectionapi.metmuseum.org/public/collection/v1/objects',
           {
             params: {
-              metadataDate: "2023-07-01",
+              metadataDate: "2023-05-01",
               page: page,
               pageSize: 9 // Display 9 cards per page
             },
@@ -67,39 +66,43 @@ const Artworks = () => {
   };
 
   return (
-      <div
-        className="container"
-        ref={containerRef}
-        onScroll={handleScroll}
-      >
+    <div>
+      
+      <div className="container" ref={containerRef} onScroll={handleScroll}>
+      <p>Browse by: Era Artist</p>
         <div className="row">
-        <div className="col-9 row card-deck">
-          {artworks.map((artwork) => (
-            <div
-              className="col-4"
-              onClick={() => handleClick(artwork)}
-              key={artwork.objectID}
-            >
-              <ArtCard
-                title={artwork.title}
-                primaryImage={artwork.primaryImage}
-                // artistDisplayName={artwork.artistDisplayName}
-              />
-            </div>
-          ))}
-        </div>
-        <div className="col-3">
-        {selectArtworks && (
-        <div className="container">
-          <ArtworkInfo
-            artistDisplayName={selectArtworks.artistDisplayName}
-            primaryImage={selectArtworks.primaryImage}
-            objectID={selectArtworks.objectID}
-            title={selectArtworks.title}
-          />
-        </div>
-        )}
-        </div>
+          <div className="col-9 row card-deck">
+            {artworks.map((artwork) => (
+              <div
+                className="col-4"
+                onClick={() => handleClick(artwork)}
+                key={artwork.objectID}
+              >
+                <ArtCard
+                  title={artwork.title}
+                  primaryImageSmall={artwork.primaryImageSmall}
+                  // artistDisplayName={artwork.artistDisplayName}
+                />
+              </div>
+            ))}
+          </div>
+          <div className="col-3">
+            {selectArtworks && (
+              <div className="container">
+                <ArtworkInfo
+                  objectName={selectArtworks.objectName}
+                  artistDisplayName={selectArtworks.artistDisplayName}
+                  objectURL={selectArtworks.objectURL}
+                  objectID={selectArtworks.objectID}
+                  title={selectArtworks.title}
+                  artistDisplayBio={selectArtworks.artistDisplayBio}
+                  culture={selectArtworks.culture}
+                  period={selectArtworks.period}
+                  creditLine={selectArtworks.creditLine}
+                />
+              </div>
+            )}
+          </div>
         </div>
         {isLoading && <div>Loading...</div>}
         {!isLoading && artworks.length === 18 && (
@@ -108,6 +111,7 @@ const Artworks = () => {
           </div>
         )}
       </div>
+    </div>
   );
 };
 

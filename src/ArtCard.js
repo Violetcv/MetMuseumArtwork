@@ -1,9 +1,9 @@
 import './ArtCard.css';
 
-function ArtCard({ title, artistDisplayName, primaryImage, objectID}){
+function ArtCard({ title, artistDisplayName, primaryImageSmall, objectID}){
         return (
           <div className="card">
-            <img src={primaryImage} className="card-img-top" alt={`Album art of ${title}`} />
+            <img src={primaryImageSmall} className="card-img-top" alt={`Album art of ${title}`} />
             <div className="card-body d-flex flex-column justify-content-between">
               {/* <h5 className="card-title">
                 {title}

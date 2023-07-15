@@ -1,9 +1,10 @@
 .container {
-  /* border: 0.3rem solid #e4002b; */
+  border: 0.3rem solid #818B7E;
   padding: 10px;
   max-height: 500px;
   overflow-y: auto;
-
+  margin-top: 3rem;
+  /* background-color: #dbcfc3; */
 }
 
 .row {
@@ -15,6 +16,7 @@
 }
 
 .col-3{
+  margin-top:auto;
   color:#A74D4A;
 }
 
