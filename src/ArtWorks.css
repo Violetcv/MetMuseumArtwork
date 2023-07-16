@@ -21,8 +21,30 @@
 }
 */
 
+.department_select{
+  border: 0.3rem solid #0a1307;
+
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 .artcard{
-  margin-bottom: 18px;
+  border: 0.3rem solid #870c0e;
+
+  /* margin-bottom: 18px; */
+  position: relative;
+  width: 100%;
+}
+
+.artcard img {
+  border: 0.3rem solid #329714;
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .load-more-button {

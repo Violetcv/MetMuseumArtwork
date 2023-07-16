@@ -9,6 +9,8 @@ const Artworks = () => {
   const [selectArtworks, setSelectedArtworks] = useState();
   const [page, setPage] = useState(1);//default value
   const [isLoading, setIsLoading] = useState(false);
+  const [departments, setDepartments] = useState([]);
+  const [selectedDepartmentId, setSelectedDepartmentId] = useState('');
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const Artworks = () => {
               // hasImages: true,
               metadataDate: "2023-05-01",
               page: page,
-              departmentIds: "10",
+              departmentIds: selectedDepartmentId,
               pageSize: 9 //Display 9 cards per page
             },
           }
@@ -42,9 +44,9 @@ const Artworks = () => {
 
 
         const artworksData = await Promise.all(artworkPromises);
-        const artworksWithImages = artworksData.filter(item => [])
-        // set filter on wheteher there are images or not
-        setArtworks((prevArtworks) => [...prevArtworks, ...artworksData]);
+        const artworksWithImages = artworksData.filter(item => item.primaryImageSmall !== "")
+
+        setArtworks((prevArtworks) => [...prevArtworks, ...artworksWithImages]);
         setIsLoading(false);
       } catch (error) {
         console.log(error);
@@ -52,10 +54,24 @@ const Artworks = () => {
     };
 
     fetchData();
-  }, [page]);
+  }, [page, selectedDepartmentId]);
 
   // departments api; drop down
+  useEffect(() => {
+    const fetchDepartments = async () => {
+      try {
+        const response = await axios.get(
+          'https://collectionapi.metmuseum.org/public/collection/v1/departments'
+        );
 
+        setDepartments(response.data.departments);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchDepartments();
+  }, []);
 
 
   const handleScroll = () => {
@@ -75,13 +91,32 @@ const Artworks = () => {
   const handleLoadMore = () => {
     setPage((prevPage) => prevPage + 1);
   };
+ 
+  //department drop down
+  const handleDepartmentChange = (event) => {
+    setSelectedDepartmentId(event.target.value);
+    setArtworks([]);
+    setPage(1);
+  };
+
 
   return (
     <div>
       
       <div className="container">
+
+        <div className="department_select">
         {/* browse by department dateBegin and dateEnd API:  https://collectionapi.metmuseum.org/public/collection/v1/departments */}
-      <p>Browse by: Era Artist</p>
+        <select value={selectedDepartmentId} onChange={handleDepartmentChange}>
+        <option value="">All Departments</option>
+        {departments.map((department) => (
+            <option key={department.departmentId} value={department.departmentId}>
+              {department.displayName}
+            </option>
+          ))}
+        </select>
+        </div>
+
       {/* (inline) drop down; state object for departments; setSelecttedDepartmentObject */}
         <div className="row">
           <div className="col-9 row card-deck" ref={containerRef} onScroll={handleScroll} style={{height: "100vh", overflowX: "scroll", "overflowY": "scroll" }}>
